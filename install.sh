@@ -40,7 +40,8 @@ function check_supported_os()
         exit 1
     else
         echo "Your current combination of Linux distribution and distribution version is not officially supported! Error on line $LINENO.  Will exit"
-        exit 1
+        ## do not exit, it will install almost normally
+        #exit 1
     fi
     return 0
 }
@@ -813,7 +814,8 @@ function main()
     make_installer_dirs
     download_and_copy_files
     install_apt_dependencies
-    create_install_logfile
+    ## do not create logfile on Debian Kit
+    #create_install_logfile
     # Optionally use python virtualenv, USE_VIRTUALENV set in ncsdk.conf
     [ "${USE_VIRTUALENV}" == 'yes' ] && setup_virtualenv
     install_python_dependencies
